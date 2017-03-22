@@ -1,13 +1,19 @@
+
 apply plugin: 'java'
 
 
 repositories {
      mavenCentral()
+     maven {
+     	 url 'https://jitpack.io' 
+         // url "https://github.com/eclipseguru/missing-swt-fragments/zipball/master"
+     }
 }
 
 dependencies {
 
-	compile "org.eclipse.platform:org.eclipse.swt:3.105.2"
+    compile "com.github.eclipseguru:missing-swt-fragments:master-SNAPSHOT"
+//    compile "org.eclipse.platform:org.eclipse.swt:3.105.2"
 
     testCompile 'junit:junit:4.12'
 }
