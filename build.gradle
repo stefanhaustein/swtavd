@@ -1,17 +1,15 @@
-
 apply plugin: 'java'
+apply plugin: 'maven'
 
+sourceCompatibility = 1.7  // Android :(
+targetCompatibility = 1.7
 
-repositories {
-     mavenCentral()
-     maven {
-     	 url 'https://jitpack.io' 
-     }
+allprojects {
+  repositories {
+    maven { url 'https://jitpack.io' }
+  }
 }
 
 dependencies {
-    compile "org.eclipse.platform:org.eclipse.swt:3.105.2"
-    compile "com.github.eclipseguru:missing-swt-fragments:master-SNAPSHOT"
-
-    testCompile 'junit:junit:4.12'
+   compile "com.github.stefanhaustein.jswt:jswt-core:master-SNAPSHOT"
 }
