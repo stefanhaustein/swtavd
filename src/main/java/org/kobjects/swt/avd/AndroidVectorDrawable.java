@@ -84,10 +84,11 @@ public class AndroidVectorDrawable {
         Transform transform = null;
         Transform original = null;
         if (scaleX != 1 || scaleY != 1) {
-            original = gc.getTransform();
+        	original = new Transform(gc.getDevice());
+            gc.getTransform(original);
             float[] buf = new float[6];
             original.getElements(buf);
-            transform = new Transform(original.getDevice(), buf);
+            transform = new Transform(gc.getDevice(), buf);
             transform.scale(scaleX, scaleY);
         }
 
@@ -99,8 +100,9 @@ public class AndroidVectorDrawable {
         gc.setAlpha(saveAlpha);
 
         if (transform != null) {
-            transform.dispose();
             gc.setTransform(original);
+            transform.dispose();
+            original.dispose();
         }
     }
 
@@ -417,9 +419,10 @@ public class AndroidVectorDrawable {
             Transform original = null;
             Transform transform = null;
             if (scaleX != 1 || scaleY != 1 || rotation != 0 || translateX != 0 || translateY != 0) {
-                Transform orignal = gc.getTransform();
+            	original = new Transform(gc.getDevice());
+                gc.getTransform(original);
                 float[] buf = new float[6];
-                orignal.getElements(buf);
+                original.getElements(buf);
                 transform = new Transform(gc.getDevice(), buf);
                 if (scaleX != 1 || scaleY != 1) {
                     transform.scale(scaleX, scaleY);
@@ -438,8 +441,9 @@ public class AndroidVectorDrawable {
                 child.draw(gc);
             }
             if (transform != null) {
-                transform.dispose();
                 gc.setTransform(original);
+                transform.dispose();
+                original.dispose();
             }
         }
 
